@@ -38,10 +38,41 @@ Unlike an LLM, an agent operates in a feedback loop.
     ``
     Input -> think -> act -> observe -> think -> act -> observe -> ... -> think -> act -> observe -> Output
     ``
-    
-    
 
+### 2. ReAct: Reason + Act
 
+**ReAct** is one of the most influential AI agent frameworks. The core idea is simple: Instead of only reasoing (**chain-of-thought) or only acting (**tool-use**), let the model alternate between **Reasoning** and **Acting**.
+
+#### 2.1 Why ReAct Was Introduced
+Before ReAct, there are mainly two approaches:
+  - Chain-of-Thought (Reasoning Only)
+    The model reasons step-by-step. However, it has no verification, no access to current information and may hallucinate.
+  - Tool Use (Action Only)
+    it does not plan nor reason about what information is needed.
+
+ReAct combines both. The though-action-observation loop continues until the model has enough information.
+
+### Pseudo Code
+
+````
+while not solved:
+  thought = LLM(
+  question,
+  previous_observations
+  )
+
+  action = choose_tool(thought)
+
+  observation = execute(action)
+
+  add_to_context(
+    thought,
+    action,
+    observation
+  )
+
+return fianl_answer
+````
 
 
 
