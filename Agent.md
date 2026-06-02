@@ -52,7 +52,7 @@ Before ReAct, there are mainly two approaches:
 
 ReAct combines both. The though-action-observation loop continues until the model has enough information.
 
-### Pseudo Code
+### 3. Pseudo Code
 
 ````
 while not solved:
@@ -74,6 +74,37 @@ while not solved:
 return fianl_answer
 ````
 
+### 4. Agent Architectures
+
+A typical ReAct agent looks like:
+````
+                User Goal
+                     |
+                     ▼
+              ┌──────────┐
+              │   LLM    │
+              └────┬─────┘
+                   │
+                Thought
+                   │
+                   ▼
+              Choose Tool
+                   │
+        ┌──────────┼──────────┐
+        ▼          ▼          ▼
+     Search     Python      Database
+        │          │          │
+        └──────────┼──────────┘
+                   │
+              Observation
+                   │
+                   ▼
+              ┌──────────┐
+              │   LLM    │
+              └────┬─────┘
+                   │
+              Next Thought
+````
 
 
 
